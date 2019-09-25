@@ -140,7 +140,7 @@ export default {
     }
 
     let user = await insertUser(this, entity);
-    user = await this.updateAuthToken(user._id, email, entity.role);
+    user = await this.updateAuthToken(this, user._id, email, entity.role);
 
     // Send account validation email
     // await sendEmailValidationEmail(context, email, user.services.validationToken);

@@ -56,7 +56,7 @@ export default {
       let user = await getUser(this, context, { "email.address": email });
       await validatePassword(this, password, user);
 
-      user = await this.updateAuthToken(user._id, email, user.role);
+      user = await this.updateAuthToken(this, user._id, email, user.role);
       delete user.services.password;
       delete user.services.validationToken;
       return await this.transfromDocuments(context, {}, user);
