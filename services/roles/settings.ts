@@ -1,6 +1,7 @@
 import { ServiceSettingSchema } from "moleculer";
 
 const rolesSettings: ServiceSettingSchema = {
+  idField: "id",
   /*
     * Public fields
   */

@@ -36,6 +36,10 @@ const ApiService: ServiceSchema = {
 					"v1.auth.logout",
 					"v1.auth.resetPassword",
 
+					// ROLES
+					"v1.roles.list",
+					"v1.roles.get",
+
 					// WORKPLANS
 					"v1.workplans.list",
 
@@ -51,7 +55,11 @@ const ApiService: ServiceSchema = {
 					// AUTH
           "POST /auth/login": "v1.auth.login",
           "POST /auth/logout": "v1.auth.logout",
-          "GET /auth/reset": "v1.auth.resetPassword",
+					"GET /auth/reset": "v1.auth.resetPassword",
+
+					// ROLES
+					"GET /roles": "v1.roles.list",
+					"GET /roles/:id": "v1.roles.get",
 
 					// WORKPLANS
 					"REST workplans": "v1.workplans",

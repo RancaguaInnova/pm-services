@@ -1,6 +1,6 @@
 "use strict";
 import { ServiceSchema } from "moleculer";
-// import IdGenerator from "../../mixins/idGenerator.mixin";
+import DBService from "services-db-mixin";
 
 // SERVICE IMPORTS:
 import settings from "./roles/settings";
@@ -9,7 +9,9 @@ const RolesService: ServiceSchema = {
 	name: "roles",
 	version: 1,
 
-	mixins: [],
+	mixins: [
+		DBService(process.env.MONGO_URI, "roles"),
+	],
 
 	/**
 	 * Service settings
@@ -18,7 +20,7 @@ const RolesService: ServiceSchema = {
 	/**
 	 * Service dependencies
 	 */
-	dependencies: [{ name: "auth", version: 1 }],
+	dependencies: [],
 
 	/**
 	 * Actions
