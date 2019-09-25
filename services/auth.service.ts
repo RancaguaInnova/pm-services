@@ -1,6 +1,10 @@
 "use strict";
 import { ServiceSchema } from "moleculer";
+import DbService from "services-db-mixin";
 // import IdGenerator from "../../mixins/idGenerator.mixin";
+
+// MIXINS:
+import AuthMethods from "../mixins/auth.mixin";
 
 // SERVICE IMPORTS:
 import settings from "./auth/settings";
@@ -21,7 +25,8 @@ const AuthService: ServiceSchema = {
 	version: 1,
 
 	mixins: [
-		// IdGenerator,
+		DbService(process.env.MONGO_URI, "users"),
+		AuthMethods,
 	],
 
 	/**

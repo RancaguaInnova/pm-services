@@ -60,7 +60,7 @@ const ApiService: ServiceSchema = {
 					"REST users": "v1.users",
 				},
 				async onBeforeCall(context, route, request, response) {
-					this.logger.info("context:", context.service._serviceSpecification);
+					// this.logger.info("context:", context.service._serviceSpecification);
 				},
 			},
 		],

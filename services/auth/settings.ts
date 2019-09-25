@@ -1,10 +1,11 @@
 import { ServiceSettingSchema } from "moleculer";
 
 const authSettings: ServiceSettingSchema = {
+  idField: "id",
   /*
     * Public fields
   */
-  fields: ["_id", "email", "password", "token"],
+  fields: ["id", "email", "password", "token"],
 
   /*
     * Validation schema

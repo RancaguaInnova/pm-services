@@ -1,14 +1,14 @@
 import jwt from "jsonwebtoken";
-import moleculer from "moleculer";
+import { Errors } from "moleculer";
 import moment from "moment";
 
-const validatePassword = async (service, password, user) => {
+const validatePassword = async (service, password: string, user) => {
   try {
     await service.checkPasswords(service, password, user);
   } catch (error) {
     service.logger.error(error);
     return Promise.reject(
-      new moleculer.Errors.MoleculerClientError(
+      new Errors.MoleculerClientError(
         "Incorrect email or password",
         401,
         "InvalidCredentials",
@@ -26,28 +26,12 @@ const getUser = async (service, context, query) => {
   } catch (error) {
     service.logger.error("Error finding user by query:", error.messsage);
     return Promise.reject(
-      new moleculer.Errors.MoleculerClientError(
+      new Errors.MoleculerClientError(
         `Error finding user: ${error.message}`,
         404,
         "NotFound",
       ),
     );
-  }
-};
-
-const renewAuthToken = async (service, tokenData, context) => {
-  // No Session management. Using JWT solution
-  // TODO: Implement a call to remote users service
-  try {
-    // TODO: This is used at user creation on Users service. Maybe generalize it?
-    const { _id, role, email } = tokenData;
-    const id = typeof _id === "string" ? _id : _id.toString();
-    const expiresAt = moment().add(3, "m");
-    const token = jwt.sign({ id, email, role, expiresAt }, process.env.JWT_SECRET);
-    return await context.call("v1.users.updateAuthToken", { id, token });
-  } catch (error) {
-    service.logger.error("Error setting token on user", error.message);
-    return Promise.reject(error);
   }
 };
 
@@ -72,15 +56,10 @@ export default {
       let user = await getUser(this, context, { "email.address": email });
       await validatePassword(this, password, user);
 
-      const tokenData = {
-        _id: user._id,
-        email,
-        role: user.role,
-      };
-      user = await renewAuthToken(this, tokenData, context);
+      user = await this.updateAuthToken(user._id, email, user.role);
       delete user.services.password;
       delete user.services.validationToken;
-      return user;
+      return await this.transfromDocuments(context, {}, user);
     } catch (error) {
       this.logger.error(error);
     }

@@ -1,19 +1,16 @@
 "use strict";
 import { ServiceSchema } from "moleculer";
 import DbService from "services-db-mixin";
-// const Auth = require("services-auth-mixin");
 
 // SERVICE IMPORTS:
 import settings from "./users/settings";
 
+// MIXINS:
+import AuthMethods from "../mixins/auth.mixin";
+
 // Actions:
 import create from "./users/actions/create";
-// const list = require("./actions/list");
-// const get = require("./actions/get");
-// const update = require("./actions/update");
-// const remove = require("./actions/remove");
 import findByQuery from "./users/actions/findByQuery";
-import updateAuthToken from "./users/actions/updateAuthToken";
 import updateForgotToken from "./users/actions/updateForgotToken";
 
 // Methods:
@@ -26,7 +23,7 @@ const UsersService: ServiceSchema = {
 
 	mixins: [
 		DbService(process.env.MONGO_URI, "users"),
-		// Auth,
+		AuthMethods,
 	],
 
 	/**
@@ -57,7 +54,6 @@ const UsersService: ServiceSchema = {
 		// get,
 		findByQuery,
 		// update,
-		updateAuthToken,
 		updateForgotToken,
 		// remove,
 	},

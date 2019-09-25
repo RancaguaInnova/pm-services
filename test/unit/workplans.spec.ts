@@ -13,7 +13,9 @@ describe("Test 'WorkPlans' service", () => {
 	describe("Test 'workplans.list' action", () => {
 
 		it("should return with an array of WorkPlan documents", () => {
-			expect(broker.call("v1.workplans.list")).resolves.toBe([]);
+			expect(broker.call("v1.workplans.list")).resolves.toStrictEqual({
+				page: 1, pageSize: 10, rows: [], total: 0, totalPages: 0,
+			});
 		});
 
 	});
