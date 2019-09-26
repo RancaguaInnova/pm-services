@@ -17,8 +17,7 @@ export default {
   async handler(context) {
     const { query } = context.params;
     try {
-      const user = await this.adapter.find({ query });
-      return this.checkUser(user);
+      return await this.adapter.find({ query });
     } catch (error) {
       this.logger.error("Error finding user by query:", error.messsage);
       return Promise.reject(

@@ -5,17 +5,17 @@ import DbService from "services-db-mixin";
 // SERVICE IMPORTS:
 import settings from "./users/settings";
 
-// MIXINS:
-import AuthMethods from "../mixins/auth.mixin";
-
 // Actions:
 import create from "./users/actions/create";
 import findByQuery from "./users/actions/findByQuery";
 import updateForgotToken from "./users/actions/updateForgotToken";
 
 // Methods:
-import checkUser from "./users/methods/checkUser";
+import generateEntity from "./users/methods/generateEntity"
 import hashPassword from "./users/methods/hashPassword";
+import insertUser from "./users/methods/insertUser";
+import sendAccountValidationEmail from "./users/methods/sendAccountValidationEmail";
+import userExists from "./users/methods/userExists";
 
 const UsersService: ServiceSchema = {
 	name: "users",
@@ -23,7 +23,6 @@ const UsersService: ServiceSchema = {
 
 	mixins: [
 		DbService(process.env.MONGO_URI, "users"),
-		AuthMethods,
 	],
 
 	/**
@@ -50,12 +49,8 @@ const UsersService: ServiceSchema = {
 	 */
 	actions: {
 		create,
-		// list,
-		// get,
 		findByQuery,
-		// update,
 		updateForgotToken,
-		// remove,
 	},
 
 	/**
@@ -69,8 +64,11 @@ const UsersService: ServiceSchema = {
 	 * Service private methods
 	 */
 	methods: {
-		checkUser,
+		generateEntity,
 		hashPassword,
+		insertUser,
+		sendAccountValidationEmail,
+		userExists,
 	},
 
 	/**

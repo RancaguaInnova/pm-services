@@ -1,4 +1,5 @@
 import { ServiceSettingSchema } from "moleculer";
+import { ObjectID } from "mongodb";
 
 const usersSettings: ServiceSettingSchema = {
   idField: "id",
@@ -44,5 +45,27 @@ const usersSettings: ServiceSettingSchema = {
     updatedAt: { type: "date", optional: true },
   },
 };
+
+export interface IUserEntity {
+  _id: ObjectID;
+  identifier: string;
+  email: {
+    address: string,
+    verified: boolean,
+  };
+  services: {
+    password: {
+      bcrypt: string,
+      createdAt: Date,
+    },
+    authToken: "",
+    validationToken: string,
+  };
+  role: {
+    id: string,
+    name: string,
+  };
+  createdAt: Date;
+}
 
 export default usersSettings;

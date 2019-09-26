@@ -5,15 +5,30 @@ const authSettings: ServiceSettingSchema = {
   /*
     * Public fields
   */
-  fields: ["id", "email", "password", "token"],
+  fields: [
+    "id",
+    "email",
+    "identifier",
+    "firstName",
+    "lastName",
+    "role",
+    "services.authToken",
+  ],
 
   /*
     * Validation schema
   */
   entityValidator: {
     email: { type: "email", unique: true, empty: false },
-    password: { type: "string", empty: false },
-    token: { type: "string", optional: true },
+    identifier: { type: "string", min: 8, unique: true },
+    firstName: { type: "string", min: 3, optional: true },
+    lastName: { type: "string", min: 3, optional: true },
+    role: { type: "object", props: {
+       id: { type: "string", empty: false },
+       name: { type: "string", empty: false },
+    } },
+    createdAt: { type: "date" },
+    updatedAt: { type: "date", optional: true },
   },
 };
 

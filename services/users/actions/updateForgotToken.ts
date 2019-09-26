@@ -14,8 +14,8 @@ const visibility: ActionVisibility = "protected";
  */
 export default {
   params: {
-    id: { type: "string" },
-    token: { type: "string" },
+    id: { type: "string", empty: false },
+    token: { type: "string", empty: false },
   },
   visibility,
   async handler(context) {

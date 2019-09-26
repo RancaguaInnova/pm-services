@@ -3,9 +3,6 @@ import { ServiceSchema } from "moleculer";
 import DbService from "services-db-mixin";
 // import IdGenerator from "../../mixins/idGenerator.mixin";
 
-// MIXINS:
-import AuthMethods from "../mixins/auth.mixin";
-
 // SERVICE IMPORTS:
 import settings from "./auth/settings";
 
@@ -26,7 +23,6 @@ const AuthService: ServiceSchema = {
 
 	mixins: [
 		DbService(process.env.MONGO_URI, "users"),
-		AuthMethods,
 	],
 
 	/**
@@ -59,9 +55,9 @@ const AuthService: ServiceSchema = {
 	 * Service private methods
 	 */
 	methods: {
-		verifyToken,
 		checkPasswords,
 		hasVerifiedEmail,
+		verifyToken,
 	},
 
 	/**

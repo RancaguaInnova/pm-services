@@ -38,6 +38,7 @@
     "moleculer": "^0.13.0",
     "moleculer-web": "^0.8.0",
     "moment": "^2.24.0",
+    "mongodb": "^3.3.2",
     "services-db-mixin": "^2.0.8",
     "uuid": "^3.3.3"
   },
