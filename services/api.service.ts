@@ -36,6 +36,20 @@ const ApiService: ServiceSchema = {
 					"v1.auth.logout",
 					"v1.auth.resetPassword",
 
+					// ACTIONS
+					"v1.actions.create",
+					"v1.actions.get",
+					"v1.actions.list",
+					"v1.actions.update",
+					"v1.actions.remove",
+
+					// ACTIVITIES
+					"v1.activities.create",
+					"v1.activities.get",
+					"v1.activities.list",
+					"v1.activities.update",
+					"v1.activities.remove",
+
 					// AREAS
 					"v1.areas.create",
 					"v1.areas.get",
@@ -61,9 +75,6 @@ const ApiService: ServiceSchema = {
 					"v1.roles.list",
 					"v1.roles.get",
 
-					// WORKPLANS
-					"v1.workplans.list",
-
 					// USERS
 					"v1.users.create",
 					"v1.users.get",
@@ -71,12 +82,21 @@ const ApiService: ServiceSchema = {
 					"v1.users.update",
 					"v1.users.remove",
 
+					// WORKPLANS
+					"v1.workplans.list",
+
 				],
 				aliases: {
 					// AUTH
           "POST /auth/login": "v1.auth.login",
           "POST /auth/logout": "v1.auth.logout",
 					"GET /auth/reset": "v1.auth.resetPassword",
+
+					// ACTIONS
+					"REST actions": "v1.actions",
+
+					// ACTIVITIES
+					"REST activities": "v1.activities",
 
 					// AREAS
 					"REST areas": "v1.areas",
