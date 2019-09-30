@@ -14,6 +14,7 @@ const rolesSettings: ServiceSettingSchema = {
     "objectives",
     "actions",
     "activities",
+    "users",
   ],
 
   /*
@@ -52,6 +53,12 @@ const rolesSettings: ServiceSettingSchema = {
       delete: { type: "boolean" },
     } },
     activities: { type: "object", empty: false, props: {
+      create: { type: "boolean" },
+      read: { type: "boolean" },
+      update: { type: "boolean" },
+      delete: { type: "boolean" },
+    } },
+    users: { type: "object", empty: false, props: {
       create: { type: "boolean" },
       read: { type: "boolean" },
       update: { type: "boolean" },
