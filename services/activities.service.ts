@@ -3,6 +3,7 @@ import { ServiceSchema } from "moleculer";
 import DBService from "services-db-mixin";
 
 // SERVICE IMPORTS:
+import Hooks from "../mixins/hooks";
 import settings from "./activities/settings";
 
 const ActivitiesService: ServiceSchema = {
@@ -11,6 +12,7 @@ const ActivitiesService: ServiceSchema = {
 
 	mixins: [
 		DBService(process.env.MONGO_URI, "activities"),
+		Hooks,
 	],
 
 	/**

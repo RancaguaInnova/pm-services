@@ -1,12 +1,16 @@
 "use strict";
 import { ServiceSchema } from "moleculer";
 import DBService from "services-db-mixin";
+import Hooks from "../mixins/hooks";
 
 const WorkPlansService: ServiceSchema = {
 	name: "workplans",
 	version: 1,
 
-	mixins: [DBService(process.env.MONGO_URI, "workplans")],
+	mixins: [
+		DBService(process.env.MONGO_URI, "workplans"),
+		Hooks,
+	],
 
 	/**
 	 * Service settings
