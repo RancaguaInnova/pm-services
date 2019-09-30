@@ -84,6 +84,10 @@ const ApiService: ServiceSchema = {
 
 					// WORKPLANS
 					"v1.workplans.list",
+					"v1.workplans.create",
+					"v1.workplans.get",
+					"v1.workplans.update",
+					"v1.workplans.remove",
 
 				],
 				aliases: {
