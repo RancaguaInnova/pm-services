@@ -17,7 +17,7 @@ const ApiService: ServiceSchema = {
       // Configures the Access-Control-Allow-Headers CORS header.
       allowedHeaders: ["Content-Type", "Authorization", "X-Origin"],
       // Configures the Access-Control-Expose-Headers CORS header.
-      exposedHeaders: [],
+      exposedHeaders: ["X-Total-Count"],
       // Configures the Access-Control-Allow-Credentials CORS header.
       credentials: true,
       // Configures the Access-Control-Max-Age CORS header.
