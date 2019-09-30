@@ -2,7 +2,7 @@ import { Context } from "moleculer";
 
 export default async (context: Context, response) => {
   context.meta.$responseHeaders = {
-    "X-Total-Count": response.total,
+    "Content-Range": response.total,
   };
   return response;
 };

@@ -1,11 +1,11 @@
-import addXTotalCountHeader from "./addXTotalCountHeader";
+import addContentRangeHeader from "./addContentRangeHeader";
 import listResponseAsArray from "./listResponseAsArray";
 
 export default {
   hooks: {
 		after: {
 			list: [
-				addXTotalCountHeader,
+				addContentRangeHeader,
 				listResponseAsArray,
 			],
 		},
