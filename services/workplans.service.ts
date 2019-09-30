@@ -2,6 +2,7 @@
 import { ServiceSchema } from "moleculer";
 import DBService from "services-db-mixin";
 import Hooks from "../mixins/hooks";
+import settings from "./workplans/settings";
 
 const WorkPlansService: ServiceSchema = {
 	name: "workplans",
@@ -15,9 +16,7 @@ const WorkPlansService: ServiceSchema = {
 	/**
 	 * Service settings
 	 */
-	settings: {
-
-	},
+	settings,
 
 	/**
 	 * Service dependencies
