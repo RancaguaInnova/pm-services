@@ -41,8 +41,8 @@ const usersSettings: ServiceSettingSchema = {
        id: { type: "string", empty: false },
        name: { type: "string", empty: false },
     } },
-    createdAt: { type: "date" },
-    updatedAt: { type: "date", optional: true },
+    createdAt: { type: "string", optional: true },
+    updatedAt: { type: "string", optional: true },
   },
 };
 

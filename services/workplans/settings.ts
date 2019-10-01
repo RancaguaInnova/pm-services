@@ -20,7 +20,7 @@ const workplansSettings: ServiceSettingSchema = {
     name: { type: "string", unique: true, empty: false },
     description: { type: "string", empty: false },
     initialDate: { type: "date" },
-    endDate: { type: "date" },
+    endDate: { type: "string" },
   },
 };
 

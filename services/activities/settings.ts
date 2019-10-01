@@ -20,9 +20,9 @@ const activitiesSettings: ServiceSettingSchema = {
     "transversality",
     "approved",
     "createdAt",
+    "updatedAt",
     "completedAt",
     "completedBy",
-    "updatedAt",
   ],
 
   /*
