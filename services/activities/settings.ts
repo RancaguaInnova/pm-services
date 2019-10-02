@@ -43,7 +43,7 @@ const activitiesSettings: ServiceSettingSchema = {
       description: { type: "string", empty: false },
       quantity: { type: "number", positive: true, integer: true },
     } } },
-    location: { type: "object", props: {
+    location: { type: "object", optional: true, props: {
       name: { type: "string", empty: false },
       lat: { type: "number", positive: true, integer: true },
       lng: { type: "number", positive: true, integer: true },
@@ -55,8 +55,8 @@ const activitiesSettings: ServiceSettingSchema = {
       objectiveId: { type: "string", empty: false },
       actionId: { type: "string", empty: false },
     } } },
+    approved: { type: "boolean" },
   },
-  approved: { type: "boolean" },
 };
 
 export default activitiesSettings;
