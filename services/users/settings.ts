@@ -15,6 +15,7 @@ const usersSettings: ServiceSettingSchema = {
     "lastName",
     "role",
     "services.authToken",
+    "departmentId",
   ],
 
   /*
@@ -37,6 +38,7 @@ const usersSettings: ServiceSettingSchema = {
     identifier: { type: "string", min: 8, unique: true },
     firstName: { type: "string", min: 3, optional: true },
     lastName: { type: "string", min: 3, optional: true },
+    departmentId: { type: "string", optional: true },
     role: { type: "object", props: {
        id: { type: "string", empty: false },
        name: { type: "string", empty: false },
