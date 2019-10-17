@@ -32,9 +32,7 @@ const RolesService: ServiceSchema = {
 	/**
 	 * Events
 	 */
-	events: {
-
-	},
+	events: {},
 
 	/**
 	 * Service private methods
