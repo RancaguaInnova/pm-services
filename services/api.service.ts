@@ -57,6 +57,13 @@ const ApiService: ServiceSchema = {
 					"v1.areas.update",
 					"v1.areas.remove",
 
+					// DEPARTMENTS
+					"v1.departments.create",
+					"v1.departments.get",
+					"v1.departments.list",
+					"v1.departments.update",
+					"v1.departments.remove",
+
 					// LINES
 					"v1.lines.create",
 					"v1.lines.get",
@@ -104,6 +111,9 @@ const ApiService: ServiceSchema = {
 
 					// AREAS
 					"REST areas": "v1.areas",
+
+					// DEPARTMENTS
+					"REST departments": "v1.departments",
 
 					// LINES
 					"REST lines": "v1.lines",
