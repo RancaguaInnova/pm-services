@@ -15,6 +15,7 @@ const rolesSettings: ServiceSettingSchema = {
     "actions",
     "activities",
     "users",
+    "departments",
   ],
 
   /*
