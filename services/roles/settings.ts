@@ -64,6 +64,12 @@ const rolesSettings: ServiceSettingSchema = {
       update: { type: "boolean" },
       delete: { type: "boolean" },
     } },
+    departments: { type: "object", empty: false, props: {
+      create: { type: "boolean" },
+      read: { type: "boolean" },
+      update: { type: "boolean" },
+      delete: { type: "boolean" },
+    } },
   },
 };
 
