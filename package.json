@@ -19,8 +19,8 @@
   ],
   "author": "",
   "devDependencies": {
-    "@types/bluebird": "^3.5.24",
-    "@types/jest": "^24.0.18",
+    "@types/bluebird": "^3.5.28",
+    "@types/jest": "^24.0.19",
     "@types/node": "^10.12.12",
     "@types/uuid": "^3.4.5",
     "jest": "^24.9.0",
@@ -29,17 +29,17 @@
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
     "tslint": "^5.20.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "dotenv": "^8.1.0",
+    "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
-    "moleculer": "^0.13.0",
+    "moleculer": "^0.13.11",
     "moleculer-web": "^0.8.0",
     "moment": "^2.24.0",
-    "mongodb": "^3.3.2",
-    "services-db-mixin": "^2.0.8",
+    "mongodb": "^3.3.3",
+    "services-db-mixin": "^2.1.8",
     "uuid": "^3.3.3"
   },
   "engines": {

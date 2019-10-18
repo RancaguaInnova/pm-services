@@ -19,7 +19,7 @@ export default {
     try {
       return await this.adapter.find({ query });
     } catch (error) {
-      // this.logger.error("Error finding user by query:", error.messsage);
+      this.logger.error("Error finding user by query:", error.messsage);
       return Promise.reject(
         new Errors.MoleculerClientError(
           `Could not get user with query: ${query}`,

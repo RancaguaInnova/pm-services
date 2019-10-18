@@ -14,7 +14,7 @@ const usersSettings: ServiceSettingSchema = {
     "firstName",
     "lastName",
     "role",
-    "services.authToken",
+    "services",
     "departmentId",
   ],
 

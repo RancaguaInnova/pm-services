@@ -1,4 +1,4 @@
-import { Errors } from "moleculer";
+import { Context, Errors } from "moleculer";
 
 /**
  * Create User
@@ -15,7 +15,7 @@ export default {
     password: { type: "string"},
     identifier: { type: "string" },
   },
-  async handler(context) {
+  async handler(context: Context) {
     let { email } = context.params;
     email = email.toLowerCase();
     const { password, identifier } = context.params;
