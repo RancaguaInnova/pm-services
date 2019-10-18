@@ -17,7 +17,9 @@ export default {
   async handler(context: Context) {
     const { query } = context.params;
     try {
-      return await this.adapter.find({ query });
+      const users = await this.adapter.find({ query });
+      return await this.transformDocuments(context, {}, users);
+
     } catch (error) {
       this.logger.error("Error finding user by query:", error.messsage);
       return Promise.reject(

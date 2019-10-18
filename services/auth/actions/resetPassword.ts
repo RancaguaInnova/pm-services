@@ -1,4 +1,5 @@
  import { Context, Errors } from "moleculer";
+ import uuidv1 from "uuid/v1";
 
 /** Reset the users password
  *
@@ -17,21 +18,22 @@
   async handler(context: Context) {
     const { email } = context.params;
     try {
-      let user = await context.call("v1.users.findByQuery", { query: { email } });
+      const users = await context.call("v1.users.findByQuery", { query: { "email.address": email } });
+      let user = users[0];
       if (!user) {
         return Promise.reject(
           new Errors.MoleculerClientError(
-            `Error getting User`,
+            `User was not found`,
             404,
             "UserNotFound",
           ),
         );
       }
-      const token = this.generateId() + this.generateId();
+      const token = uuidv1();
 
-      user = await context.call("v1.users.updateForgotToken", { id: user._id, token } );
+      user = await context.call("v1.users.updateForgotToken", { id: user.id, token } );
       await context.call("v1.notifications.sendEmail", { options: {
-        to: [user.emails[0].address],
+        to: [user.email.address],
         subject: "Recupera tu contraseña",
         title: "Recupera tu contraseña",
         subtitle: "",

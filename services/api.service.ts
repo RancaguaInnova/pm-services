@@ -27,6 +27,16 @@ const ApiService: ServiceSchema = {
 		routes: [
 			{
 				path: "/api",
+				authorization: true,
+				whitelist: [
+					"v1.auth.resetPassword",
+				],
+				aliases: {
+					"GET /auth/reset": "v1.auth.resetPassword",
+				},
+			},
+			{
+				path: "/api",
 				whitelist: [
 					// Access to any actions in all services under "/api" URL
 					// "**",
@@ -34,7 +44,7 @@ const ApiService: ServiceSchema = {
 					// AUTH
 					"v1.auth.login",
 					"v1.auth.logout",
-					"v1.auth.resetPassword",
+					// "v1.auth.resetPassword",
 
 					// ACTIONS
 					"v1.actions.create",
@@ -101,7 +111,7 @@ const ApiService: ServiceSchema = {
 					// AUTH
           "POST /auth/login": "v1.auth.login",
           "POST /auth/logout": "v1.auth.logout",
-					"GET /auth/reset": "v1.auth.resetPassword",
+					// "GET /auth/reset": "v1.auth.resetPassword",
 
 					// ACTIONS
 					"REST actions": "v1.actions",
@@ -140,6 +150,12 @@ const ApiService: ServiceSchema = {
 		// Serve assets from "public" folder
 		assets: {
 			folder: "public",
+		},
+	},
+	methods: {
+		authorize(context, route, request, response) {
+			console.log("Authorization test!");
+			return Promise.resolve(context);
 		},
 	},
 };
