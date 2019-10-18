@@ -1,4 +1,4 @@
- import * as moleculer from "moleculer";
+ import { Context, Errors } from "moleculer";
 
 /** Reset the users password
  *
@@ -14,13 +14,13 @@
       type: "email",
     },
   },
-  async handler(context) {
+  async handler(context: Context) {
     const { email } = context.params;
     try {
       let user = await context.call("v1.users.findByQuery", { query: { email } });
       if (!user) {
         return Promise.reject(
-          new moleculer.Errors.MoleculerClientError(
+          new Errors.MoleculerClientError(
             `Error getting User`,
             404,
             "UserNotFound",

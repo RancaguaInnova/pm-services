@@ -1,4 +1,4 @@
-import { ActionVisibility, Errors } from "moleculer";
+import { ActionVisibility, Context, Errors } from "moleculer";
 
 const visibility: ActionVisibility = "public";
 
@@ -14,7 +14,7 @@ export default {
     query: { type: "object" },
   },
   visibility,
-  async handler(context) {
+  async handler(context: Context) {
     const { query } = context.params;
     try {
       return await this.adapter.find({ query });

@@ -6,7 +6,7 @@ import { Errors } from "moleculer";
  * @param {string} email
  * @returns {Promise<boolean>}
  */
-const userExists = async (service, email: string): Promise<boolean> => {
+const userExists = async (service: { adapter: { findOne } }, email: string): Promise<boolean> => {
   try {
     return await service.adapter.findOne({ "email.address": email }) ? true : false;
   } catch (error) {

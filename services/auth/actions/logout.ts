@@ -1,10 +1,12 @@
+import { Context } from "moleculer";
+
 /**
  * Log a User out
  *
  * @return {null}
  */
 export default {
-  async handler(context) {
+  async handler(context: Context) {
     const token = context.meta.bearerToken;
     try {
       const { id } = await this.verifyToken(token);

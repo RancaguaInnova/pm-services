@@ -1,4 +1,4 @@
-import { ActionVisibility } from "moleculer";
+import { ActionVisibility, Context } from "moleculer";
 
 const visibility: ActionVisibility = "protected";
 
@@ -14,7 +14,7 @@ export default {
     token: { type: "string" },
   },
   visibility,
-  async handler(context) {
+  async handler(context: Context) {
     try {
       return await this.verifyToken(context.params.token);
     } catch (error) {

@@ -1,4 +1,4 @@
-import { ActionVisibility, Errors } from "moleculer";
+import { ActionVisibility, Context, Errors } from "moleculer";
 
 const visibility: ActionVisibility = "protected";
 
@@ -18,7 +18,7 @@ export default {
     token: { type: "string", empty: false },
   },
   visibility,
-  async handler(context) {
+  async handler(context: Context) {
     const { id, token } = context.params;
     try {
       const updated = await this.adapter.updateById(id, { $set: { "services.forgot": token } });

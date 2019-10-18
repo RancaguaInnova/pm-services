@@ -1,4 +1,4 @@
-import { Errors } from "moleculer";
+import { Context, Errors } from "moleculer";
 
 /**
  * Sends an email to validate the new Users account
@@ -8,7 +8,7 @@ import { Errors } from "moleculer";
  * @param {string} token
  * @returns
  */
-const sendAccountValidationEmail = async (context, email: string, token: string) => {
+const sendAccountValidationEmail = async (context: Context, email: string, token: string) => {
   try {
     context.call("v1.notifications.sendEmail", { options: {
       to: [email],

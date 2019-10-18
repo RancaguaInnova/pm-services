@@ -5,7 +5,7 @@
  *
  * @returns {Boolean} User has verified email or not
  */
-const hasVerifiedEmail = (user) => {
+const hasVerifiedEmail = (user: { email: { verified: boolean } }) => {
   const { email } = user;
   return email && email.verified;
 };
