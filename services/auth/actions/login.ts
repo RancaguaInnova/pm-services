@@ -28,7 +28,7 @@ export default {
         ),
       );
     } catch (error) {
-      this.logger.error(error);
+      // this.logger.error(error);
       return Promise.reject(
         new Errors.MoleculerClientError(
           `Error finding user: ${error.message}`,
