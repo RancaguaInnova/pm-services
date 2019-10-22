@@ -25,16 +25,16 @@ const ApiService: ServiceSchema = {
     },
 
 		routes: [
-			{
-				path: "/api",
-				authorization: true,
-				whitelist: [
-					"v1.auth.resetPassword",
-				],
-				aliases: {
-					"GET /auth/reset": "v1.auth.resetPassword",
-				},
-			},
+			// {
+			// 	path: "/api",
+			// 	authorization: true,
+			// 	whitelist: [
+			// 		"v1.auth.resetPassword",
+			// 	],
+			// 	aliases: {
+			// 		"GET /auth/reset": "v1.auth.resetPassword",
+			// 	},
+			// },
 			{
 				path: "/api",
 				whitelist: [
