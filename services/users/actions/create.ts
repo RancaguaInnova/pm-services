@@ -24,7 +24,7 @@ export default {
       if (await this.userExists(this, email)) {
         return Promise.reject(
           new Errors.MoleculerClientError(
-            `The email: ${email} has already been registered`,
+            `El email: ${email} ya ha sido registrado`,
             409,
             "EmailExists",
           ),

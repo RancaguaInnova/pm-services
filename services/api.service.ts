@@ -1,4 +1,4 @@
-import { ServiceSchema } from "moleculer";
+import { Context, Errors, ServiceSchema } from "moleculer";
 import ApiGateway from "moleculer-web";
 
 const ApiService: ServiceSchema = {
@@ -141,7 +141,7 @@ const ApiService: ServiceSchema = {
 					// USERS
 					"REST users": "v1.users",
 				},
-				async onBeforeCall(context, route, request, response) {
+				async onBeforeCall(context: Context, route, request, response) {
 					// this.logger.info("context:", context.service._serviceSpecification);
 				},
 			},
@@ -153,11 +153,27 @@ const ApiService: ServiceSchema = {
 		},
 	},
 	methods: {
-		authorize(context, route, request, response) {
-			console.log("Authorization test!");
-			return Promise.resolve(context);
+		authenticate(context: Context, route, request, response) {
+			const token = this.getToken(request);
+			if (!token.bearerToken) {
+				return Promise.reject(
+					new Errors.MoleculerClientError(
+						"Debes iniciar sesión para acceder",
+						403,
+						"Forbidden",
+					),
+				);
+			}
+			context.meta = { ...context.meta, token };
+			return Promise.resolve(null);
+		},
+		authorize(context: Context, route, request, response) {
+			const token: string = context.meta.token.bearerToken;
+			context.meta.user = this.getDataFromToken(context, token);
 		},
 	},
 };
+
+// TODO: TEST AUTHENTICATION / AUTHORIZATION
 
 export = ApiService;
