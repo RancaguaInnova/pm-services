@@ -135,9 +135,7 @@ const ApiService: ServiceSchema = {
 					"REST objectives": "v1.objectives",
 
 					// ROLES
-					"GET /roles": "v1.roles.list",
-					"GET /roles/:id": "v1.roles.get",
-
+					"REST roles": "v1.roles",
 					// WORKPLANS
 					"REST workplans": "v1.workplans",
 
