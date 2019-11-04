@@ -30,7 +30,7 @@ const rolesSettings: ServiceSettingSchema = {
       edit: { type: "boolean" },
       delete: { type: "boolean" },
       list: { type: "boolean" },
-      enable: { type: "boolean" },
+      enabled: { type: "boolean" },
     } },
     areas: { type: "object", empty: false, props: {
       create: { type: "boolean" },
@@ -38,7 +38,7 @@ const rolesSettings: ServiceSettingSchema = {
       edit: { type: "boolean" },
       delete: { type: "boolean" },
       list: { type: "boolean" },
-      enable: { type: "boolean" },
+      enabled: { type: "boolean" },
     } },
     lines: { type: "object", empty: false, props: {
       create: { type: "boolean" },
@@ -46,7 +46,7 @@ const rolesSettings: ServiceSettingSchema = {
       edit: { type: "boolean" },
       delete: { type: "boolean" },
       list: { type: "boolean" },
-      enable: { type: "boolean" },
+      enabled: { type: "boolean" },
     } },
     objectives: { type: "object", empty: false, props: {
       create: { type: "boolean" },
@@ -54,7 +54,7 @@ const rolesSettings: ServiceSettingSchema = {
       edit: { type: "boolean" },
       delete: { type: "boolean" },
       list: { type: "boolean" },
-      enable: { type: "boolean" },
+      enabled: { type: "boolean" },
     } },
     actions: { type: "object", empty: false, props: {
       create: { type: "boolean" },
@@ -62,7 +62,7 @@ const rolesSettings: ServiceSettingSchema = {
       edit: { type: "boolean" },
       delete: { type: "boolean" },
       list: { type: "boolean" },
-      enable: { type: "boolean" },
+      enabled: { type: "boolean" },
     } },
     activities: { type: "object", empty: false, props: {
       create: { type: "boolean" },
@@ -70,7 +70,7 @@ const rolesSettings: ServiceSettingSchema = {
       edit: { type: "boolean" },
       delete: { type: "boolean" },
       list: { type: "boolean" },
-      enable: { type: "boolean" },
+      enabled: { type: "boolean" },
     } },
     users: { type: "object", empty: false, props: {
       create: { type: "boolean" },
@@ -78,7 +78,7 @@ const rolesSettings: ServiceSettingSchema = {
       edit: { type: "boolean" },
       delete: { type: "boolean" },
       list: { type: "boolean" },
-      enable: { type: "boolean" },
+      enabled: { type: "boolean" },
     } },
     departments: { type: "object", empty: false, props: {
       create: { type: "boolean" },
@@ -86,7 +86,7 @@ const rolesSettings: ServiceSettingSchema = {
       edit: { type: "boolean" },
       delete: { type: "boolean" },
       list: { type: "boolean" },
-      enable: { type: "boolean" },
+      enabled: { type: "boolean" },
     } },
     roles: { type: "object", empty: false, props: {
       create: { type: "boolean" },
@@ -94,7 +94,7 @@ const rolesSettings: ServiceSettingSchema = {
       edit: { type: "boolean" },
       delete: { type: "boolean" },
       list: { type: "boolean" },
-      enable: { type: "boolean" },
+      enabled: { type: "boolean" },
     } },
   },
 };
