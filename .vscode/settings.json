@@ -1,0 +1,17 @@
+{
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.fdk/**": true,
+        "**/.git": true,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.hg": true,
+        "**/.svn": true,
+        "**/bower_components": true,
+        "**/CVS": true,
+        "**/dist/**": true,
+        "**/log/**": true,
+        "**/node_modules": false,
+        "**/tmp/**": true
+    }
+}
