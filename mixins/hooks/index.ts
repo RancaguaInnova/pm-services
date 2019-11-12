@@ -1,13 +1,13 @@
-import addContentRangeHeader from "./addContentRangeHeader";
+// import addContentRangeHeader from "./addContentRangeHeader";
 import listResponseAsArray from "./listResponseAsArray";
 
 export default {
   hooks: {
-		after: {
-			list: [
-				addContentRangeHeader,
-				listResponseAsArray,
-			],
-		},
-  },
+    after: {
+      list: [
+        // addContentRangeHeader,
+        listResponseAsArray
+      ]
+    }
+  }
 };
