@@ -1,15 +1,16 @@
 import { Context, Errors, ServiceSchema } from "moleculer";
 import ApiGateway from "moleculer-web";
+import { transformQuery } from "../middleware";
 
 const ApiService: ServiceSchema = {
-	name: "api",
-	version: 1,
-	mixins: [ApiGateway],
+  name: "api",
+  version: 1,
+  mixins: [ApiGateway],
 
-	// More info about settings: https://moleculer.services/docs/0.13/moleculer-web.html
-	settings: {
-		port: process.env.PORT || 3200,
-		cors: {
+  // More info about settings: https://moleculer.services/docs/0.13/moleculer-web.html
+  settings: {
+    port: process.env.PORT || 3200,
+    cors: {
       // Configures the Access-Control-Allow-Origin CORS header.
       origin: "*",
       // Configures the Access-Control-Allow-Methods CORS header.
@@ -21,158 +22,159 @@ const ApiService: ServiceSchema = {
       // Configures the Access-Control-Allow-Credentials CORS header.
       credentials: true,
       // Configures the Access-Control-Max-Age CORS header.
-      maxAge: 3600,
+      maxAge: 3600
     },
 
-		routes: [
-			// {
-			// 	path: "/api",
-			// 	authorization: true,
-			// 	whitelist: [
-			// 		"v1.auth.resetPassword",
-			// 	],
-			// 	aliases: {
-			// 		"GET /auth/reset": "v1.auth.resetPassword",
-			// 	},
-			// },
-			{
-				path: "/api",
-				whitelist: [
-					// Access to any actions in all services under "/api" URL
-					// "**",
+    use: [transformQuery],
 
-					// AUTH
-					"v1.auth.login",
-					"v1.auth.logout",
-					// "v1.auth.resetPassword",
+    routes: [
+      // {
+      // 	path: "/api",
+      // 	authorization: true,
+      // 	whitelist: [
+      // 		"v1.auth.resetPassword",
+      // 	],
+      // 	aliases: {
+      // 		"GET /auth/reset": "v1.auth.resetPassword",
+      // 	},
+      // },
+      {
+        path: "/api",
+        whitelist: [
+          // Access to any actions in all services under "/api" URL
+          // "**",
 
-					// ACTIONS
-					"v1.actions.create",
-					"v1.actions.get",
-					"v1.actions.list",
-					"v1.actions.update",
-					"v1.actions.remove",
+          // AUTH
+          "v1.auth.login",
+          "v1.auth.logout",
+          // "v1.auth.resetPassword",
 
-					// ACTIVITIES
-					"v1.activities.create",
-					"v1.activities.get",
-					"v1.activities.list",
-					"v1.activities.update",
-					"v1.activities.remove",
+          // ACTIONS
+          "v1.actions.create",
+          "v1.actions.get",
+          "v1.actions.list",
+          "v1.actions.update",
+          "v1.actions.remove",
 
-					// AREAS
-					"v1.areas.create",
-					"v1.areas.get",
-					"v1.areas.list",
-					"v1.areas.update",
-					"v1.areas.remove",
+          // ACTIVITIES
+          "v1.activities.create",
+          "v1.activities.get",
+          "v1.activities.list",
+          "v1.activities.update",
+          "v1.activities.remove",
 
-					// DEPARTMENTS
-					"v1.departments.create",
-					"v1.departments.get",
-					"v1.departments.list",
-					"v1.departments.update",
-					"v1.departments.remove",
+          // AREAS
+          "v1.areas.create",
+          "v1.areas.get",
+          "v1.areas.list",
+          "v1.areas.update",
+          "v1.areas.remove",
 
-					// LINES
-					"v1.lines.create",
-					"v1.lines.get",
-					"v1.lines.list",
-					"v1.lines.update",
-					"v1.lines.remove",
+          // DEPARTMENTS
+          "v1.departments.create",
+          "v1.departments.get",
+          "v1.departments.list",
+          "v1.departments.update",
+          "v1.departments.remove",
 
-					// OBJECTIVES
-					"v1.objectives.create",
-					"v1.objectives.get",
-					"v1.objectives.list",
-					"v1.objectives.update",
-					"v1.objectives.remove",
+          // LINES
+          "v1.lines.create",
+          "v1.lines.get",
+          "v1.lines.list",
+          "v1.lines.update",
+          "v1.lines.remove",
 
-					// ROLES
-					"v1.roles.create",
-					"v1.roles.get",
-					"v1.roles.list",
-					"v1.roles.update",
-					"v1.roles.remove",
+          // OBJECTIVES
+          "v1.objectives.create",
+          "v1.objectives.get",
+          "v1.objectives.list",
+          "v1.objectives.update",
+          "v1.objectives.remove",
 
-					// USERS
-					"v1.users.create",
-					"v1.users.get",
-					"v1.users.list",
-					"v1.users.update",
-					"v1.users.remove",
+          // ROLES
+          "v1.roles.create",
+          "v1.roles.get",
+          "v1.roles.list",
+          "v1.roles.update",
+          "v1.roles.remove",
 
-					// WORKPLANS
-					"v1.workplans.list",
-					"v1.workplans.create",
-					"v1.workplans.get",
-					"v1.workplans.update",
-					"v1.workplans.remove",
+          // USERS
+          "v1.users.create",
+          "v1.users.get",
+          "v1.users.list",
+          "v1.users.update",
+          "v1.users.remove",
 
-				],
-				aliases: {
-					// AUTH
+          // WORKPLANS
+          "v1.workplans.list",
+          "v1.workplans.create",
+          "v1.workplans.get",
+          "v1.workplans.update",
+          "v1.workplans.remove"
+        ],
+        aliases: {
+          // AUTH
           "POST /auth/login": "v1.auth.login",
           "POST /auth/logout": "v1.auth.logout",
-					// "GET /auth/reset": "v1.auth.resetPassword",
+          // "GET /auth/reset": "v1.auth.resetPassword",
 
-					// ACTIONS
-					"REST actions": "v1.actions",
+          // ACTIONS
+          "REST actions": "v1.actions",
 
-					// ACTIVITIES
-					"REST activities": "v1.activities",
+          // ACTIVITIES
+          "REST activities": "v1.activities",
 
-					// AREAS
-					"REST areas": "v1.areas",
+          // AREAS
+          "REST areas": "v1.areas",
 
-					// DEPARTMENTS
-					"REST departments": "v1.departments",
+          // DEPARTMENTS
+          "REST departments": "v1.departments",
 
-					// LINES
-					"REST lines": "v1.lines",
+          // LINES
+          "REST lines": "v1.lines",
 
-					// OBJECTIVES
-					"REST objectives": "v1.objectives",
+          // OBJECTIVES
+          "REST objectives": "v1.objectives",
 
-					// ROLES
-					"REST roles": "v1.roles",
-					// WORKPLANS
-					"REST workplans": "v1.workplans",
+          // ROLES
+          "REST roles": "v1.roles",
+          // WORKPLANS
+          "REST workplans": "v1.workplans",
 
-					// USERS
-					"REST users": "v1.users",
-				},
-				async onBeforeCall(context: Context, route, request, response) {
-					// this.logger.info("context:", context.service._serviceSpecification);
-				},
-			},
-		],
+          // USERS
+          "REST users": "v1.users"
+        },
+        async onBeforeCall(context: Context, route, request, response) {
+          // this.logger.info("context:", context.service._serviceSpecification);
+        }
+      }
+    ],
 
-		// Serve assets from "public" folder
-		assets: {
-			folder: "public",
-		},
-	},
-	methods: {
-		authenticate(context: Context, route, request, response) {
-			const token = this.getToken(request);
-			if (!token.bearerToken) {
-				return Promise.reject(
-					new Errors.MoleculerClientError(
-						"Debes iniciar sesión para acceder",
-						403,
-						"Forbidden",
-					),
-				);
-			}
-			context.meta = { ...context.meta, token };
-			return Promise.resolve(null);
-		},
-		authorize(context: Context, route, request, response) {
-			const token: string = context.meta.token.bearerToken;
-			context.meta.user = this.getDataFromToken(context, token);
-		},
-	},
+    // Serve assets from "public" folder
+    assets: {
+      folder: "public"
+    }
+  },
+  methods: {
+    authenticate(context: Context, route, request, response) {
+      const token = this.getToken(request);
+      if (!token.bearerToken) {
+        return Promise.reject(
+          new Errors.MoleculerClientError(
+            "Debes iniciar sesión para acceder",
+            403,
+            "Forbidden"
+          )
+        );
+      }
+      context.meta = { ...context.meta, token };
+      return Promise.resolve(null);
+    },
+    authorize(context: Context, route, request, response) {
+      const token: string = context.meta.token.bearerToken;
+      context.meta.user = this.getDataFromToken(context, token);
+    }
+  }
 };
 
 // TODO: TEST AUTHENTICATION / AUTHORIZATION
