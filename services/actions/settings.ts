@@ -16,11 +16,14 @@ const actionsSettings: ServiceSettingSchema = {
     "initialDate",
     "endDate",
     "weight",
+    "images",
+    "documents",
     "approved",
     "createdBy",
     "updatedBy",
     "createdAt",
     "updatedAt",
+   
   ],
 
   /*
