@@ -16,11 +16,14 @@ const actionsSettings: ServiceSettingSchema = {
     "initialDate",
     "endDate",
     "weight",
+    "images",
+    "documents",
     "approved",
     "createdBy",
     "updatedBy",
     "createdAt",
     "updatedAt",
+   
   ],
 
   /*
@@ -36,7 +39,7 @@ const actionsSettings: ServiceSettingSchema = {
     initialDate: { type: "string" },
     endDate: { type: "string" },
     weight: { type: "number", integer: true, positive: true },
-    approved: { type: "boolean" },
+    approved: { type: "boolean", default: false },
     createdBy: { type: "string", optional: true },
     updatedBy: { type: "string", optional: true },
   },
