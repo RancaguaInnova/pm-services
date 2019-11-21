@@ -39,7 +39,7 @@ const actionsSettings: ServiceSettingSchema = {
     initialDate: { type: "string" },
     endDate: { type: "string" },
     weight: { type: "number", integer: true, positive: true },
-    approved: { type: "boolean", default: false },
+    approved: { type: "boolean", optional: true, default: false },
     createdBy: { type: "string", optional: true },
     updatedBy: { type: "string", optional: true },
   },
