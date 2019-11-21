@@ -3266,6 +3266,15 @@ moleculer-db@^0.8.2:
     lodash "^4.17.14"
     nedb "^1.8.0"
 
+moleculer-db@^0.8.4:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/moleculer-db/-/moleculer-db-0.8.4.tgz#0272c344e0c6d4447dad664fc6cb886d601def71"
+  integrity sha512-hCTbIhKzK6Zywf+P4siHtdCUs6f5t3tHnTorHBkRtF0TkloB20AnRgHQM5jvJOZdSHVphLy7WWYYWArDa2imUQ==
+  dependencies:
+    bluebird "^3.5.5"
+    lodash "^4.17.15"
+    nedb "^1.8.0"
+
 moleculer-repl@^0.5.3:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/moleculer-repl/-/moleculer-repl-0.5.7.tgz#a5730879ff52f34e18f063eb0f90f07da315fd78"
