@@ -22,33 +22,30 @@ const ApiService: ServiceSchema = {
       // Configures the Access-Control-Allow-Credentials CORS header.
       credentials: true,
       // Configures the Access-Control-Max-Age CORS header.
-      maxAge: 3600
+      maxAge: 3600,
     },
 
     use: [transformQuery],
 
     routes: [
-      // {
-      // 	path: "/api",
-      // 	authorization: true,
-      // 	whitelist: [
-      // 		"v1.auth.resetPassword",
-      // 	],
-      // 	aliases: {
-      // 		"GET /auth/reset": "v1.auth.resetPassword",
-      // 	},
-      // },
+      {
+        path: "/api/auth",
+        whitelist: ["v1.auth.login", "v1.auth.logout"],
+        aliases: {
+          "POST /login": "v1.auth.login",
+          "GET /logout": "v1.auth.logout",
+        },
+      },
+      {
+        path: "/api/auth/reset",
+        whitelist: ["v1.auth.reset"],
+        authentication: true,
+      },
       {
         path: "/api",
+        authentication: true,
+        authorization: true,
         whitelist: [
-          // Access to any actions in all services under "/api" URL
-          // "**",
-
-          // AUTH
-          "v1.auth.login",
-          "v1.auth.logout",
-          // "v1.auth.resetPassword",
-
           // ACTIONS
           "v1.actions.create",
           "v1.actions.get",
@@ -110,14 +107,9 @@ const ApiService: ServiceSchema = {
           "v1.workplans.create",
           "v1.workplans.get",
           "v1.workplans.update",
-          "v1.workplans.remove"
+          "v1.workplans.remove",
         ],
         aliases: {
-          // AUTH
-          "POST /auth/login": "v1.auth.login",
-          "POST /auth/logout": "v1.auth.logout",
-          // "GET /auth/reset": "v1.auth.resetPassword",
-
           // ACTIONS
           "REST actions": "v1.actions",
 
@@ -142,29 +134,25 @@ const ApiService: ServiceSchema = {
           "REST workplans": "v1.workplans",
 
           // USERS
-          "REST users": "v1.users"
+          "REST users": "v1.users",
         },
-        async onBeforeCall(context: Context, route, request, response) {
-          // this.logger.info("context:", context.service._serviceSpecification);
-        }
-      }
+        // async onBeforeCall(context: Context, route, request, response) {
+        // this.logger.info("context:", context.service._serviceSpecification);
+        // },
+      },
     ],
 
     // Serve assets from "public" folder
     assets: {
-      folder: "public"
-    }
+      folder: "public",
+    },
   },
   methods: {
     authenticate(context: Context, route, request, response) {
       const token = this.getToken(request);
       if (!token.bearerToken) {
         return Promise.reject(
-          new Errors.MoleculerClientError(
-            "Debes iniciar sesión para acceder",
-            403,
-            "Forbidden"
-          )
+          new Errors.MoleculerClientError("Debes iniciar sesión para acceder", 403, "Forbidden"),
         );
       }
       context.meta = { ...context.meta, token };
@@ -173,8 +161,9 @@ const ApiService: ServiceSchema = {
     authorize(context: Context, route, request, response) {
       const token: string = context.meta.token.bearerToken;
       context.meta.user = this.getDataFromToken(context, token);
-    }
-  }
+      console.log("USER:", context.meta.user);
+    },
+  },
 };
 
 // TODO: TEST AUTHENTICATION / AUTHORIZATION

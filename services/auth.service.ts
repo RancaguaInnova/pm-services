@@ -10,7 +10,7 @@ import settings from "./auth/settings";
 import isTokenValid from "./auth/actions/isTokenValid";
 import login from "./auth/actions/login";
 import logout from "./auth/actions/logout";
-import resetPassword from "./auth/actions/resetPassword";
+import reset from "./auth/actions/reset";
 
 // Methods
 import checkPasswords from "./auth/methods/checkPasswords";
@@ -18,62 +18,58 @@ import hasVerifiedEmail from "./auth/methods/hasVerifiedEmail";
 import verifyToken from "./auth/methods/verifyToken";
 
 const AuthService: ServiceSchema = {
-	name: "auth",
-	version: 1,
+  name: "auth",
+  version: 1,
 
-	mixins: [
-		DbService(process.env.MONGO_URI, "users"),
-	],
+  mixins: [DbService(process.env.MONGO_URI, "users")],
 
-	/**
-	 * Service settings
-	 */
-	settings,
-	/**
-	 * Service dependencies
-	 */
-	dependencies: [{ name: "users", version: 1 }],
+  /**
+   * Service settings
+   */
+  settings,
+  /**
+   * Service dependencies
+   */
+  dependencies: [{ name: "users", version: 1 }],
 
-	/**
-	 * Actions
-	 */
-	actions: {
-		login,
-		logout,
-		resetPassword,
-		isTokenValid,
-	},
+  /**
+   * Actions
+   */
+  actions: {
+    login,
+    logout,
+    reset,
+    isTokenValid,
+  },
 
-	/**
-	 * Events
-	 */
-	events: {
+  /**
+   * Events
+   */
+  events: {},
 
-	},
+  /**
+   * Service private methods
+   */
+  methods: {
+    checkPasswords,
+    hasVerifiedEmail,
+    verifyToken,
+  },
 
-	/**
-	 * Service private methods
-	 */
-	methods: {
-		checkPasswords,
-		hasVerifiedEmail,
-		verifyToken,
-	},
+  /**
+   * Service created lifecycle event handler
+   */
+  // created() {},
 
-	/**
-	 * Service created lifecycle event handler
-	 */
-	// created() {},
+  /**
+   * Service started lifecycle event handler
+   */
+  // async started() {},
 
-	/**
-	 * Service started lifecycle event handler
-	 */
-	// async started() {},
-
-	/**
-	 * Service stopped lifecycle event handler
-	 */
-	// async stopped() {}
+  /**
+   * Service stopped lifecycle event handler
+   */
+  // async stopped() {}
 };
 
 export = AuthService;
