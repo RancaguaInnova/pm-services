@@ -2,12 +2,13 @@
 import listResponseAsArray from "./listResponseAsArray";
 
 export default {
+  name: "request-hooks",
   hooks: {
     after: {
       list: [
         // addContentRangeHeader,
-        listResponseAsArray
-      ]
-    }
-  }
+        listResponseAsArray,
+      ],
+    },
+  },
 };

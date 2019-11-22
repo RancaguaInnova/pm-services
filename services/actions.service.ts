@@ -1,21 +1,24 @@
 "use strict";
 import { ServiceSchema } from "moleculer";
-import DBService from "services-db-mixin";
+import DBService from "moleculer-db";
+import MongooseAdapter from "moleculer-db-adapter-mongoose";
+import { actionsModel, actionsSettings } from "./actions/settings";
 
 // SERVICE IMPORTS:
 import Hooks from "../mixins/hooks";
-import settings from "./actions/settings";
 
 const ActionsService: ServiceSchema = {
   name: "actions",
   version: 1,
 
-  mixins: [DBService(process.env.MONGO_URI, "actions"), Hooks],
+  mixins: [DBService, Hooks],
+  adapter: new MongooseAdapter(process.env.MONGO_URI),
+  model: actionsModel,
 
   /**
    * Service settings
    */
-  settings,
+  settings: actionsSettings,
   /**
    * Service dependencies
    */
