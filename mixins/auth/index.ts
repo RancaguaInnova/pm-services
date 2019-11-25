@@ -2,6 +2,9 @@ import getDataFromToken from "./getDataFromToken";
 import getToken from "./getToken";
 
 export default {
-  getDataFromToken,
-  getToken,
+  name: "Auth Mixin",
+  methods: {
+    getDataFromToken,
+    getToken,
+  },
 };

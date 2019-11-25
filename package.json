@@ -44,9 +44,11 @@
     "jsonwebtoken": "^8.5.1",
     "moleculer": "^0.13.11",
     "moleculer-db": "^0.8.4",
+    "moleculer-db-adapter-mongoose": "^0.8.3",
     "moleculer-web": "^0.8.0",
     "moment": "^2.24.0",
     "mongodb": "^3.3.4",
+    "mongoose": "^5.7.12",
     "services-db-mixin": "^2.1.8",
     "uuid": "^3.3.3"
   },
