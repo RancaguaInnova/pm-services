@@ -1,11 +1,12 @@
 import { Context, Errors, ServiceSchema } from "moleculer";
 import ApiGateway from "moleculer-web";
 import { transformQuery } from "../middleware";
+import Auth from "../mixins/auth";
 
 const ApiService: ServiceSchema = {
   name: "api",
   version: 1,
-  mixins: [ApiGateway],
+  mixins: [ApiGateway, Auth],
 
   // More info about settings: https://moleculer.services/docs/0.13/moleculer-web.html
   settings: {
@@ -35,6 +36,9 @@ const ApiService: ServiceSchema = {
           "POST /login": "v1.auth.login",
           "GET /logout": "v1.auth.logout",
         },
+        bodyParsers: {
+          json: true,
+        },
       },
       {
         path: "/api/auth/reset",
@@ -45,6 +49,9 @@ const ApiService: ServiceSchema = {
         path: "/api",
         authentication: true,
         authorization: true,
+        bodyParsers: {
+          json: true,
+        },
         whitelist: [
           // ACTIONS
           "v1.actions.create",
