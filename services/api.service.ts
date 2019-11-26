@@ -1,4 +1,4 @@
-import { Context, Errors, ServiceSchema } from "moleculer";
+import { Context, ServiceSchema } from "moleculer";
 import ApiGateway from "moleculer-web";
 import { transformQuery } from "../middleware";
 import Auth from "../mixins/auth";
@@ -154,23 +154,7 @@ const ApiService: ServiceSchema = {
       folder: "public",
     },
   },
-  methods: {
-    authenticate(context: Context, route, request, response) {
-      const token = this.getToken(request);
-      if (!token.bearerToken) {
-        return Promise.reject(
-          new Errors.MoleculerClientError("Debes iniciar sesión para acceder", 403, "Forbidden"),
-        );
-      }
-      context.meta = { ...context.meta, token };
-      return Promise.resolve(null);
-    },
-    authorize(context: Context, route, request, response) {
-      const token: string = context.meta.token.bearerToken;
-      context.meta.user = this.getDataFromToken(context, token);
-      console.log("USER:", context.meta.user);
-    },
-  },
+  methods: {},
 };
 
 // TODO: TEST AUTHENTICATION / AUTHORIZATION

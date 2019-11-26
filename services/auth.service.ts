@@ -7,7 +7,6 @@ import DbService from "services-db-mixin";
 import settings from "./auth/settings";
 
 // Actions
-import isTokenValid from "./auth/actions/isTokenValid";
 import login from "./auth/actions/login";
 import logout from "./auth/actions/logout";
 import reset from "./auth/actions/reset";
@@ -15,7 +14,6 @@ import reset from "./auth/actions/reset";
 // Methods
 import checkPasswords from "./auth/methods/checkPasswords";
 import hasVerifiedEmail from "./auth/methods/hasVerifiedEmail";
-import verifyToken from "./auth/methods/verifyToken";
 
 const AuthService: ServiceSchema = {
   name: "auth",
@@ -39,7 +37,6 @@ const AuthService: ServiceSchema = {
     login,
     logout,
     reset,
-    isTokenValid,
   },
 
   /**
@@ -53,7 +50,6 @@ const AuthService: ServiceSchema = {
   methods: {
     checkPasswords,
     hasVerifiedEmail,
-    verifyToken,
   },
 
   /**

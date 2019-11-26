@@ -4,21 +4,20 @@ import { ServiceBroker } from "moleculer";
 import UsersService from "../../services/users.service";
 
 describe("Test 'Users' service", () => {
-	const broker = new ServiceBroker();
-	broker.createService(UsersService);
+  const broker = new ServiceBroker();
+  broker.createService(UsersService);
 
-	beforeAll(() => broker.start());
-	afterAll(() => broker.stop());
+  beforeAll(() => broker.start());
+  afterAll(() => broker.stop());
 
-	describe("Test 'users.create' action", () => {
-		it("should return the created User document", () => {
-			const userData = {
-				identifier: "14357896-9",
-				email: "user@email.com",
-				password: "safeandsecure",
-			};
+  const userMock = {
+    id: 1,
+    identifier: "14357896-9",
+    email: "user@email.com",
+    password: "safeandsecure",
+  };
 
-			expect(broker.call("v1.users.create", userData)).resolves.toBe("HELLO FAILURE");
-		});
-	});
+  it("Create action: Should return the inserted User document", () => {
+    return expect(broker.call("v1.users.create", userMock)).resolves.toStrictEqual(userMock);
+  });
 });

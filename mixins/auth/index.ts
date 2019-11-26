@@ -1,10 +1,10 @@
-import getDataFromToken from "./getDataFromToken";
-import getToken from "./getToken";
+import authenticate from "./authenticate";
+import authorize from "./authorize";
 
 export default {
   name: "Auth Mixin",
   methods: {
-    getDataFromToken,
-    getToken,
+    authenticate,
+    authorize,
   },
 };
