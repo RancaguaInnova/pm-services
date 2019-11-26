@@ -1,6 +1,5 @@
 import { Context, ServiceSchema } from "moleculer";
 import ApiGateway from "moleculer-web";
-import { transformQuery } from "../middleware";
 import Auth from "../mixins/auth";
 
 const ApiService: ServiceSchema = {
@@ -26,24 +25,27 @@ const ApiService: ServiceSchema = {
       maxAge: 3600,
     },
 
-    use: [transformQuery],
-
     routes: [
       {
         path: "/api/auth",
-        whitelist: ["v1.auth.login", "v1.auth.logout"],
+        whitelist: ["v1.auth.login"],
         aliases: {
           "POST /login": "v1.auth.login",
-          "GET /logout": "v1.auth.logout",
         },
         bodyParsers: {
           json: true,
         },
       },
       {
-        path: "/api/auth/reset",
+        path: "/api/auth",
         whitelist: ["v1.auth.reset"],
+        aliases: {
+          "GET /reset": "v1.auth.reset",
+        },
         authentication: true,
+        bodyParsers: {
+          json: true,
+        },
       },
       {
         path: "/api",
@@ -143,9 +145,10 @@ const ApiService: ServiceSchema = {
           // USERS
           "REST users": "v1.users",
         },
-        // async onBeforeCall(context: Context, route, request, response) {
-        // this.logger.info("context:", context.service._serviceSpecification);
-        // },
+        async onBeforeCall(context: Context, route, request, response) {
+          // this.logger.info("PARAMS:", context.params);
+          // console.log("PARAMS:", context.params);
+        },
       },
     ],
 

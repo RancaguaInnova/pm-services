@@ -20,21 +20,15 @@ export default {
     try {
       const user = await this.adapter.findOne({ "email.address": email });
       const isValidPassword = await this.checkPasswords(password, user);
-      return isValidPassword ? await this.transformDocuments(context, {}, user) : Promise.reject(
-        new Errors.MoleculerClientError(
-          "Invalid Credentials",
-          401,
-          "InvalidCredentials",
-        ),
-      );
+      return isValidPassword
+        ? await this.transformDocuments(context, {}, user)
+        : Promise.reject(
+            new Errors.MoleculerClientError("Invalid Credentials", 401, "InvalidCredentials"),
+          );
     } catch (error) {
       // this.logger.error(error);
       return Promise.reject(
-        new Errors.MoleculerClientError(
-          `Error finding user: ${error.message}`,
-          404,
-          "NotFound",
-        ),
+        new Errors.MoleculerClientError(`Error finding user: ${error.message}`, 404, "NotFound"),
       );
     }
   },
