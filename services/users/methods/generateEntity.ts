@@ -13,9 +13,14 @@ import { IUserEntity } from "../settings";
  * @param {string} password
  * @returns {IUserEntity} The basic User document
  */
-const generateEntity = (service, identifier: string, email: string, password: string): IUserEntity =>  {
+const generateEntity = function(
+  identifier: string,
+  email: string,
+  password: string,
+  role: { id; name },
+): IUserEntity {
   const id = new ObjectID();
-  const activityReporterRoleId = "5d7a5c277e5a622c30ad3e3a";
+
   return {
     _id: id,
     identifier,
@@ -25,21 +30,21 @@ const generateEntity = (service, identifier: string, email: string, password: st
     },
     services: {
       password: {
-        bcrypt: service.hashPassword(password),
+        bcrypt: this.hashPassword(password),
         createdAt: new Date(),
       },
-      authToken: jwt.sign({
-        id,
-        email,
-        role: activityReporterRoleId,
-        expiresAt: moment().add(3, "m"),
-      }, process.env.JWT_SECRET),
+      authToken: jwt.sign(
+        {
+          id,
+          email,
+          role: role.id,
+          expiresAt: moment().add(3, "m"),
+        },
+        process.env.JWT_SECRET,
+      ),
       validationToken: uuid.v1(),
     },
-    role: {
-      id: activityReporterRoleId,
-      name: "Activity Reporter",
-    },
+    role,
     createdAt: new Date(),
   };
 };

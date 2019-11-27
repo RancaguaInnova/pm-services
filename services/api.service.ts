@@ -103,6 +103,7 @@ const ApiService: ServiceSchema = {
           "v1.roles.list",
           "v1.roles.update",
           "v1.roles.remove",
+          "v1.roles.getBaseRole",
 
           // USERS
           "v1.users.create",

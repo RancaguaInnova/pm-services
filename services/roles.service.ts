@@ -6,53 +6,55 @@ import DBService from "services-db-mixin";
 import Hooks from "../mixins/hooks";
 import settings from "./roles/settings";
 
+// ACTION
+import getBaseRole from "./roles/actions/getBaseRole";
+
 const RolesService: ServiceSchema = {
-	name: "roles",
-	version: 1,
+  name: "roles",
+  version: 1,
 
-	mixins: [
-		DBService(process.env.MONGO_URI, "roles"),
-		Hooks,
-	],
+  mixins: [DBService(process.env.MONGO_URI, "roles"), Hooks],
 
-	/**
-	 * Service settings
-	 */
-	settings,
-	/**
-	 * Service dependencies
-	 */
-	dependencies: [],
+  /**
+   * Service settings
+   */
+  settings,
+  /**
+   * Service dependencies
+   */
+  dependencies: [],
 
-	/**
-	 * Actions
-	 */
-	// actions: {},
+  /**
+   * Actions
+   */
+  actions: {
+    getBaseRole,
+  },
 
-	/**
-	 * Events
-	 */
-	events: {},
+  /**
+   * Events
+   */
+  events: {},
 
-	/**
-	 * Service private methods
-	 */
-	methods: {},
+  /**
+   * Service private methods
+   */
+  methods: {},
 
-	/**
-	 * Service created lifecycle event handler
-	 */
-	// created() {},
+  /**
+   * Service created lifecycle event handler
+   */
+  // created() {},
 
-	/**
-	 * Service started lifecycle event handler
-	 */
-	// async started() {},
+  /**
+   * Service started lifecycle event handler
+   */
+  // async started() {},
 
-	/**
-	 * Service stopped lifecycle event handler
-	 */
-	// async stopped() {}
+  /**
+   * Service stopped lifecycle event handler
+   */
+  // async stopped() {}
 };
 
 export = RolesService;

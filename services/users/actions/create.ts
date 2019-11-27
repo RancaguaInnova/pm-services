@@ -11,8 +11,8 @@ import { Context, Errors } from "moleculer";
  */
 export default {
   params: {
-    email: { type: "string"},
-    password: { type: "string"},
+    email: { type: "string" },
+    password: { type: "string" },
     identifier: { type: "string" },
   },
   async handler(context: Context) {
@@ -31,7 +31,8 @@ export default {
         );
       }
 
-      const entity = this.generateEntity(this, identifier, email, password);
+      const { id, name } = await context.call("v1.roles.getBaseRole");
+      const entity = await this.generateEntity(identifier, email, password, { id, name });
       await this.validateEntity(entity);
       const user = await this.insertUser(this, entity);
 
