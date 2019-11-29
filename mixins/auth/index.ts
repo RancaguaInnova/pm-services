@@ -1,5 +1,5 @@
-import authenticate from "./authenticate";
-import authorize from "./authorize";
+import authenticate from "./methods/authenticate";
+import authorize from "./methods/authorize";
 
 export default {
   name: "Auth Methods Mixin",

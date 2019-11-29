@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
  *
  * @returns {object} Users data / token payload
  */
-const verifyToken = (token: string): object => {
+const verifyToken = (token: string) => {
   return jwt.verify(token, process.env.JWT_SECRET, (error: object, payload) => {
     if (error) {
       return Promise.reject(error);
