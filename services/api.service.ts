@@ -1,11 +1,21 @@
 import { Context, ServiceSchema } from "moleculer";
 import ApiGateway from "moleculer-web";
-import Auth from "../mixins/auth";
+// import Auth from "../mixins/auth";
+
+// PASSPORTJS TEST
+import passport from "passport";
+import { ExtractJwt, Strategy, StrategyOptions } from "passport-jwt";
+import DbService from "services-db-mixin";
+import { promises } from "dns";
 
 const ApiService: ServiceSchema = {
   name: "api",
   version: 1,
-  mixins: [ApiGateway, Auth],
+  mixins: [
+    DbService(process.env.MONGO_URI, "users"),
+    ApiGateway,
+    // Auth
+  ],
 
   // More info about settings: https://moleculer.services/docs/0.13/moleculer-web.html
   settings: {
@@ -49,8 +59,14 @@ const ApiService: ServiceSchema = {
       },
       {
         path: "/api",
-        authentication: true,
-        authorization: true,
+        // authentication: true,
+        // authorization: true,
+        use: [
+          passport.initialize(),
+          passport.authenticate("jwt", { session: false }, (request, response) => {
+            console.log("USER:", request.user);
+          }),
+        ],
         bodyParsers: {
           json: true,
         },
@@ -158,7 +174,41 @@ const ApiService: ServiceSchema = {
       folder: "public",
     },
   },
-  methods: {},
+  methods: {
+    authenticate: function() {
+      console.log("CALL PASSPORT.AUTH here");
+      passport.authenticate("JWT", { session: false }, (request, response) => {
+        // console.log("USER:", request.user);
+        return Promise.resolve(null);
+      });
+      // return Promise.resolve(null);
+    },
+  },
+  async started() {
+    const opts: StrategyOptions = {
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: process.env.JWT_SECRET,
+    };
+
+    passport.use(
+      new Strategy(opts, async function(jwt_payload: { id: string }, done: Function) {
+        console.log("JWT_PAYLOAD:", jwt_payload);
+        try {
+          // "this" is not bound. adapter is undefined
+          const user = await this.adapter.findOne({ id: jwt_payload.id });
+          if (user) {
+            this.context.meta.user = user;
+            return done(null, user);
+          }
+          return done(null, false);
+        } catch (error) {
+          return done(error, false);
+        }
+      }),
+    );
+    passport.initialize();
+    console.log("PASSPORT LOADED!");
+  },
 };
 
 // TODO: TEST AUTHENTICATION / AUTHORIZATION
