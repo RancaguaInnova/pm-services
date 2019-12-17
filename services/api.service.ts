@@ -1,4 +1,4 @@
-import { Context, ServiceSchema } from "moleculer";
+import { ServiceSchema } from "moleculer";
 import ApiGateway from "moleculer-web";
 import Auth from "../mixins/auth";
 
@@ -125,8 +125,8 @@ const ApiService: ServiceSchema = {
         ],
         aliases: {
           //AUTH
-          "POST /login": "v1.auth.login",
-          "GET /reset": "v1.auth.reset",
+          "POST /auth/login": "v1.auth.login",
+          "GET /auth/reset": "v1.auth.reset",
 
           // ACTIONS
           "REST actions": "v1.actions",
@@ -153,10 +153,6 @@ const ApiService: ServiceSchema = {
 
           // USERS
           "REST users": "v1.users",
-        },
-        async onBeforeCall(context: Context, route, request, response) {
-          // this.logger.info("PARAMS:", context.params);
-          // console.log("PARAMS:", context.params);
         },
       },
     ],
