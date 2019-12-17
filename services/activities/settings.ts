@@ -24,7 +24,7 @@ const activitiesSettings: ServiceSettingSchema = {
     "createdAt",
     "updatedAt",
     "completedAt",
-    "completedBy"
+    "completedBy",
   ],
 
   /*
@@ -37,7 +37,7 @@ const activitiesSettings: ServiceSettingSchema = {
     status: {
       type: "enum",
       values: ["not-started", "in-progress", "finished"],
-      empty: false
+      empty: false,
     },
     responsibleId: { type: "string", empty: false },
     executedFunds: {
@@ -46,9 +46,9 @@ const activitiesSettings: ServiceSettingSchema = {
         type: "object",
         props: {
           source: { type: "string", empty: false },
-          amount: { type: "number", positive: true, integer: true }
-        }
-      }
+          amount: { type: "number", positive: true, integer: true },
+        },
+      },
     },
     coordinatedWith: { type: "array", items: "string" },
     beneficiaries: {
@@ -57,9 +57,9 @@ const activitiesSettings: ServiceSettingSchema = {
         type: "object",
         props: {
           description: { type: "string", empty: false },
-          quantity: { type: "number", positive: true, integer: true }
-        }
-      }
+          quantity: { type: "number", positive: true, integer: true },
+        },
+      },
     },
     location: {
       type: "object",
@@ -67,8 +67,8 @@ const activitiesSettings: ServiceSettingSchema = {
       props: {
         name: { type: "string", empty: false },
         lat: { type: "number", positive: true, integer: true },
-        lng: { type: "number", positive: true, integer: true }
-      }
+        lng: { type: "number", positive: true, integer: true },
+      },
     },
     comments: { type: "string", optional: true },
     transversality: {
@@ -80,12 +80,12 @@ const activitiesSettings: ServiceSettingSchema = {
           areaId: { type: "string", empty: false, optional: true },
           lineId: { type: "string", empty: false, optional: true },
           objectiveId: { type: "string", empty: false, optional: true },
-          actionId: { type: "string", empty: false, optional: true }
-        }
-      }
+          actionId: { type: "string", empty: false, optional: true },
+        },
+      },
     },
-    approved: { type: "boolean", optional: true }
-  }
+    approved: { type: "boolean", optional: true },
+  },
 };
 
 export default activitiesSettings;

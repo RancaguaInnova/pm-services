@@ -26,35 +26,39 @@ const ApiService: ServiceSchema = {
     },
 
     routes: [
-      {
-        path: "/api/auth",
-        whitelist: ["v1.auth.login"],
-        aliases: {
-          "POST /login": "v1.auth.login",
-        },
-        bodyParsers: {
-          json: true,
-        },
-      },
-      {
-        path: "/api/auth",
-        whitelist: ["v1.auth.reset"],
-        aliases: {
-          "GET /reset": "v1.auth.reset",
-        },
-        authentication: true,
-        bodyParsers: {
-          json: true,
-        },
-      },
+      // {
+      //   path: "/api/auth",
+      //   whitelist: ["v1.auth.login"],
+      //   aliases: {
+      //     "POST /login": "v1.auth.login",
+      //   },
+      //   bodyParsers: {
+      //     json: true,
+      //   },
+      // },
+      // {
+      //   path: "/api/auth",
+      //   whitelist: ["v1.auth.reset"],
+      //   aliases: {
+      //     "GET /reset": "v1.auth.reset",
+      //   },
+      //   authentication: true,
+      //   bodyParsers: {
+      //     json: true,
+      //   },
+      // },
       {
         path: "/api",
-        authentication: true,
-        authorization: true,
+        // authentication: true,
+        // authorization: true,
         bodyParsers: {
           json: true,
         },
         whitelist: [
+          // AUTH
+          "v1.auth.login",
+          "v1.auth.reset",
+
           // ACTIONS
           "v1.actions.create",
           "v1.actions.get",
@@ -120,6 +124,10 @@ const ApiService: ServiceSchema = {
           "v1.workplans.remove",
         ],
         aliases: {
+          //AUTH
+          "POST /login": "v1.auth.login",
+          "GET /reset": "v1.auth.reset",
+
           // ACTIONS
           "REST actions": "v1.actions",
 
