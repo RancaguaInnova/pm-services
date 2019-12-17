@@ -7,54 +7,49 @@ import Hooks from "../mixins/hooks";
 import settings from "./lines/settings";
 
 const LinesService: ServiceSchema = {
-	name: "lines",
-	version: 1,
+  name: "lines",
+  version: 1,
 
-	mixins: [
-		DBService(process.env.MONGO_URI, "lines"),
-		Hooks,
-	],
+  mixins: [DBService(process.env.MONGO_URI, "lines"), Hooks],
 
-	/**
-	 * Service settings
-	 */
-	settings,
-	/**
-	 * Service dependencies
-	 */
-	dependencies: [],
+  /**
+   * Service settings
+   */
+  settings,
+  /**
+   * Service dependencies
+   */
+  dependencies: [],
 
-	/**
-	 * Actions
-	 */
-	// actions: {},
+  /**
+   * Actions
+   */
+  // actions: {},
 
-	/**
-	 * Events
-	 */
-	events: {
+  /**
+   * Events
+   */
+  events: {},
 
-	},
+  /**
+   * Service private methods
+   */
+  methods: {},
 
-	/**
-	 * Service private methods
-	 */
-	methods: {},
+  /**
+   * Service created lifecycle event handler
+   */
+  // created() {},
 
-	/**
-	 * Service created lifecycle event handler
-	 */
-	// created() {},
+  /**
+   * Service started lifecycle event handler
+   */
+  // async started() {},
 
-	/**
-	 * Service started lifecycle event handler
-	 */
-	// async started() {},
-
-	/**
-	 * Service stopped lifecycle event handler
-	 */
-	// async stopped() {}
+  /**
+   * Service stopped lifecycle event handler
+   */
+  // async stopped() {}
 };
 
 export = LinesService;

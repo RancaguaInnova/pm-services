@@ -5,63 +5,56 @@ import Hooks from "../mixins/hooks";
 import settings from "./workplans/settings";
 
 const WorkPlansService: ServiceSchema = {
-	name: "workplans",
-	version: 1,
+  name: "workplans",
+  version: 1,
 
-	mixins: [
-		DBService(process.env.MONGO_URI, "workplans"),
-		Hooks,
-	],
+  mixins: [DBService(process.env.MONGO_URI, "workplans"), Hooks],
 
-	/**
-	 * Service settings
-	 */
-	settings,
+  /**
+   * Service settings
+   */
+  settings,
 
-	/**
-	 * Service dependencies
-	 */
-	dependencies: [],
+  /**
+   * Service dependencies
+   */
+  dependencies: [],
 
-	/**
-	 * Actions
-	 */
-	// actions: {
-	// 	list: context => Promise.resolve("ok!"),
-	// },
+  /**
+   * Actions
+   */
+  // actions: {
+  // 	list: context => Promise.resolve("ok!"),
+  // },
 
-	/**
-	 * Events
-	 */
-	events: {
+  /**
+   * Events
+   */
+  events: {},
 
-	},
+  /**
+   * Methods
+   */
+  methods: {},
 
-	/**
-	 * Methods
-	 */
-	methods: {
+  /**
+   * Service created lifecycle event handler
+   */
+  // created() {},
 
-	},
+  /**
+   * Service started lifecycle event handler
+   */
+  // async started() {
 
-	/**
-	 * Service created lifecycle event handler
-	 */
-	// created() {},
+  // },
 
-	/**
-	 * Service started lifecycle event handler
-	 */
-	// async started() {
+  /**
+   * Service stopped lifecycle event handler
+   */
+  // async stopped() {
 
-	// },
-
-	/**
-	 * Service stopped lifecycle event handler
-	 */
-	// async stopped() {
-
-	// },
+  // },
 };
 
 export = WorkPlansService;
