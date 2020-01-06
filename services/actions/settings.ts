@@ -22,7 +22,7 @@ const actionsSettings: ServiceSettingSchema = {
     "createdBy",
     "updatedBy",
     "createdAt",
-    "updatedAt"
+    "updatedAt",
   ],
 
   /*
@@ -36,15 +36,15 @@ const actionsSettings: ServiceSettingSchema = {
     dependsOnIds: { type: "array", items: "string", optional: true },
     status: {
       type: "enum",
-      values: ["not-started", "in-progress", "finished"]
+      values: ["not-started", "in-progress", "finished"],
     },
     initialDate: { type: "string" },
     endDate: { type: "string" },
     weight: { type: "number", integer: true, positive: true },
     approved: { type: "boolean", optional: true, default: false },
     createdBy: { type: "string", optional: true },
-    updatedBy: { type: "string", optional: true }
-  }
+    updatedBy: { type: "string", optional: true },
+  },
 };
 
 const actionsSchema = mongoose.Schema({
@@ -56,20 +56,21 @@ const actionsSchema = mongoose.Schema({
   status: {
     type: String,
     enum: ["not-started", "in-progress", "finished"],
-    default: "not-started"
+    default: "not-started",
   },
   initialDate: { type: String },
   endDate: { type: String },
   weight: { type: Number, integer: true, positive: true },
   approved: { type: Boolean, optional: true, default: false },
   createdBy: { type: String, optional: true },
-  updatedBy: { type: String, optional: true }
+  updatedBy: { type: String, optional: true },
 });
+
 actionsSchema.index({
   name: "text",
   description: "text",
   initialDate: "text",
-  endDate: "text"
+  endDate: "text",
 });
 
 const actionsModel = mongoose.model("Actions", actionsSchema);
