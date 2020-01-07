@@ -1,4 +1,5 @@
 import { ServiceSettingSchema } from "moleculer";
+import mongoose from "mongoose";
 
 const workplansSettings: ServiceSettingSchema = {
   idField: "id",
@@ -18,4 +19,13 @@ const workplansSettings: ServiceSettingSchema = {
   },
 };
 
-export default workplansSettings;
+const workplanSchema = mongoose.Schema({
+  name: { type: String, index: true, required: true },
+  description: { type: String, required: true },
+  initialDate: { type: String, required: true },
+  endDate: { type: Date, required: true },
+});
+
+const workplanModel = mongoose.model("Workplans", workplanSchema);
+
+export { workplansSettings, workplanModel };

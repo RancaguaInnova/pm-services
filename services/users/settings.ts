@@ -1,5 +1,6 @@
 import { ServiceSettingSchema } from "moleculer";
 import { ObjectID } from "mongodb";
+import mongoose from "mongoose";
 
 const usersSettings: ServiceSettingSchema = {
   idField: "id",
@@ -85,4 +86,32 @@ export interface IUserEntity {
   createdAt: Date;
 }
 
-export default usersSettings;
+const userSchema = mongoose.Schema({
+  email: {
+    address: { type: String, min: 5, max: 64, index: true, required: true },
+    verified: { type: Boolean },
+  },
+  services: {
+    password: {
+      bcrypt: { type: String, required: true },
+      createdAt: { type: Date },
+    },
+    authToken: { type: String, required: true },
+    validationToken: { type: String, required: true },
+    resetToken: { type: String },
+  },
+  identifier: { type: String, min: 8, index: true, required: true },
+  firstName: { type: String, min: 3 },
+  lastName: { type: String, min: 3 },
+  departmentId: { type: String },
+  role: {
+    id: { type: String, required: true },
+    name: { type: String, required: true },
+  },
+  createdAt: { type: Date },
+  updatedAt: { type: Date },
+});
+
+const userModel = mongoose.model("Users", userSchema);
+
+export { usersSettings, userModel };
