@@ -1,139 +1,77 @@
-import { ServiceSettingSchema } from 'moleculer'
+import { ServiceSettingSchema } from "moleculer";
+import mongoose from "mongoose";
+
+const validatorObject = {
+  type: "object",
+  empty: false,
+  props: {
+    create: { type: "boolean" },
+    show: { type: "boolean" },
+    edit: { type: "boolean" },
+    delete: { type: "boolean" },
+    list: { type: "boolean" },
+    enabled: { type: "boolean" },
+  },
+};
 
 const rolesSettings: ServiceSettingSchema = {
-  idField: 'id',
+  idField: "id",
   /*
    * Public fields
    */
   fields: [
-    'id',
-    'name',
-    'workplans',
-    'areas',
-    'lines',
-    'objectives',
-    'actions',
-    'activities',
-    'users',
-    'departments',
-    'roles',
+    "id",
+    "name",
+    "workplans",
+    "areas",
+    "lines",
+    "objectives",
+    "actions",
+    "activities",
+    "users",
+    "departments",
+    "roles",
   ],
 
   /*
    * Validation schema
    */
   entityValidator: {
-    name: { type: 'string', unique: true, empty: false },
-    workplans: {
-      type: 'object',
-      empty: false,
-      props: {
-        create: { type: 'boolean' },
-        show: { type: 'boolean' },
-        edit: { type: 'boolean' },
-        delete: { type: 'boolean' },
-        list: { type: 'boolean' },
-        enabled: { type: 'boolean' },
-      },
-    },
-    areas: {
-      type: 'object',
-      empty: false,
-      props: {
-        create: { type: 'boolean' },
-        show: { type: 'boolean' },
-        edit: { type: 'boolean' },
-        delete: { type: 'boolean' },
-        list: { type: 'boolean' },
-        enabled: { type: 'boolean' },
-      },
-    },
-    lines: {
-      type: 'object',
-      empty: false,
-      props: {
-        create: { type: 'boolean' },
-        show: { type: 'boolean' },
-        edit: { type: 'boolean' },
-        delete: { type: 'boolean' },
-        list: { type: 'boolean' },
-        enabled: { type: 'boolean' },
-      },
-    },
-    objectives: {
-      type: 'object',
-      empty: false,
-      props: {
-        create: { type: 'boolean' },
-        show: { type: 'boolean' },
-        edit: { type: 'boolean' },
-        delete: { type: 'boolean' },
-        list: { type: 'boolean' },
-        enabled: { type: 'boolean' },
-      },
-    },
-    actions: {
-      type: 'object',
-      empty: false,
-      props: {
-        create: { type: 'boolean' },
-        show: { type: 'boolean' },
-        edit: { type: 'boolean' },
-        delete: { type: 'boolean' },
-        list: { type: 'boolean' },
-        enabled: { type: 'boolean' },
-        validate: { type: 'boolean' },
-      },
-    },
-    activities: {
-      type: 'object',
-      empty: false,
-      props: {
-        create: { type: 'boolean' },
-        show: { type: 'boolean' },
-        edit: { type: 'boolean' },
-        delete: { type: 'boolean' },
-        list: { type: 'boolean' },
-        enabled: { type: 'boolean' },
-      },
-    },
-    users: {
-      type: 'object',
-      empty: false,
-      props: {
-        create: { type: 'boolean' },
-        show: { type: 'boolean' },
-        edit: { type: 'boolean' },
-        delete: { type: 'boolean' },
-        list: { type: 'boolean' },
-        enabled: { type: 'boolean' },
-      },
-    },
-    departments: {
-      type: 'object',
-      empty: false,
-      props: {
-        create: { type: 'boolean' },
-        show: { type: 'boolean' },
-        edit: { type: 'boolean' },
-        delete: { type: 'boolean' },
-        list: { type: 'boolean' },
-        enabled: { type: 'boolean' },
-      },
-    },
-    roles: {
-      type: 'object',
-      empty: false,
-      props: {
-        create: { type: 'boolean' },
-        show: { type: 'boolean' },
-        edit: { type: 'boolean' },
-        delete: { type: 'boolean' },
-        list: { type: 'boolean' },
-        enabled: { type: 'boolean' },
-      },
-    },
+    name: { type: "string", unique: true, empty: false },
+    workplans: validatorObject,
+    areas: validatorObject,
+    lines: validatorObject,
+    objectives: validatorObject,
+    actions: validatorObject,
+    activities: validatorObject,
+    users: validatorObject,
+    departments: validatorObject,
+    roles: validatorObject,
   },
-}
+};
 
-export default rolesSettings
+const schemaSettings = {
+  create: { type: Boolean },
+  show: { type: Boolean },
+  edit: { type: Boolean },
+  delete: { type: Boolean },
+  list: { type: Boolean },
+  enabled: { type: Boolean },
+};
+
+const roleSchema = mongoose.Schema({
+  name: { type: String, index: true },
+  workplans: schemaSettings,
+  areas: schemaSettings,
+  lines: schemaSettings,
+  objectives: schemaSettings,
+  actions: schemaSettings,
+  activities: schemaSettings,
+  users: schemaSettings,
+  departments: schemaSettings,
+  roles: schemaSettings,
+});
+
+const roleModel = mongoose.model("Roles", roleSchema);
+
+export { rolesSettings, roleModel };

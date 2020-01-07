@@ -1,60 +1,58 @@
 "use strict";
 import { ServiceSchema } from "moleculer";
-import DBService from "services-db-mixin";
+import DBService from "moleculer-db";
+import MongooseAdapter from "moleculer-db-adapter-mongoose";
+import { objectiveModel, objectivesSettings } from "./objectives/settings";
 
 // SERVICE IMPORTS:
 import Hooks from "../mixins/hooks";
-import settings from "./objectives/settings";
 
 const ObjectivesService: ServiceSchema = {
-	name: "objectives",
-	version: 1,
+  name: "objectives",
+  version: 1,
 
-	mixins: [
-		DBService(process.env.MONGO_URI, "objectives"),
-		Hooks,
-	],
+  mixins: [DBService, Hooks],
+  adapter: new MongooseAdapter(process.env.MONGO_URI),
+  model: objectiveModel,
 
-	/**
-	 * Service settings
-	 */
-	settings,
-	/**
-	 * Service dependencies
-	 */
-	dependencies: [],
+  /**
+   * Service settings
+   */
+  settings: objectivesSettings,
+  /**
+   * Service dependencies
+   */
+  dependencies: [],
 
-	/**
-	 * Actions
-	 */
-	// actions: {},
+  /**
+   * Actions
+   */
+  // actions: {},
 
-	/**
-	 * Events
-	 */
-	events: {
+  /**
+   * Events
+   */
+  events: {},
 
-	},
+  /**
+   * Service private methods
+   */
+  methods: {},
 
-	/**
-	 * Service private methods
-	 */
-	methods: {},
+  /**
+   * Service created lifecycle event handler
+   */
+  // created() {},
 
-	/**
-	 * Service created lifecycle event handler
-	 */
-	// created() {},
+  /**
+   * Service started lifecycle event handler
+   */
+  // async started() {},
 
-	/**
-	 * Service started lifecycle event handler
-	 */
-	// async started() {},
-
-	/**
-	 * Service stopped lifecycle event handler
-	 */
-	// async stopped() {}
+  /**
+   * Service stopped lifecycle event handler
+   */
+  // async stopped() {}
 };
 
 export = ObjectivesService;

@@ -41,6 +41,6 @@ const authSchema = mongoose.Schema({
   updatedAt: { type: Date, optional: true },
 });
 
-const authModel = mongoose.Schema("Auth", authSchema);
+const authModel = mongoose.model("Auth", authSchema);
 
 export { authSettings, authModel };
