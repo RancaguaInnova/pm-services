@@ -1,10 +1,8 @@
 "use strict";
 import { ServiceSchema } from "moleculer";
-import DbService from "services-db-mixin";
-// import IdGenerator from "../../mixins/idGenerator.mixin";
-
-// SERVICE IMPORTS:
-import settings from "./auth/settings";
+import DBService from "moleculer-db";
+import MongooseAdapter from "moleculer-db-adapter-mongoose";
+import { authModel, authSettings } from "./auth/settings";
 
 // Actions
 import login from "./auth/actions/login";
@@ -19,12 +17,14 @@ const AuthService: ServiceSchema = {
   name: "auth",
   version: 1,
 
-  mixins: [DbService(process.env.MONGO_URI, "users")],
+  mixins: [DBService],
+  adapter: new MongooseAdapter(process.env.MONGO_URI),
+  model: authModel,
 
   /**
    * Service settings
    */
-  settings,
+  settings: authSettings,
   /**
    * Service dependencies
    */

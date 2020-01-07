@@ -1,6 +1,7 @@
 import { ServiceSettingSchema } from "moleculer";
+import mongoose from "mongoose";
 
-const activitiesSettings: ServiceSettingSchema = {
+const activitySettings: ServiceSettingSchema = {
   idField: "id",
   /*
    * Public fields
@@ -88,4 +89,59 @@ const activitiesSettings: ServiceSettingSchema = {
   },
 };
 
-export default activitiesSettings;
+const activitySchema = mongoose.Schema({
+  name: { type: String, unique: true, empty: false },
+  description: { type: String, empty: false },
+  status: {
+    type: String,
+    enum: ["not-started", "in-progress", "finished"],
+    default: "not-started",
+    empty: false,
+  },
+  responsibleId: { type: String, empty: false },
+  executedFunds: {
+    type: [
+      {
+        source: { type: String, empty: false },
+        amount: { type: String, empty: false },
+      },
+    ],
+    empty: false,
+  },
+  coordinatedWith: { type: [String] },
+  beneficiaries: [
+    {
+      description: { type: String, empty: false },
+      quantity: { type: Number, positive: true, integer: true },
+    },
+  ],
+  location: {
+    type: [
+      {
+        name: { type: String, empty: false },
+        lat: { type: Number, positive: true, integer: true },
+        lng: { type: Number, positive: true, integer: true },
+      },
+    ],
+    optional: true,
+  },
+  comments: { type: String, optional: true },
+  transversality: {
+    type: [
+      {
+        areaId: { type: String, empty: false, optional: true },
+        lineId: { type: String, empty: false, optional: true },
+        objectiveId: { type: String, empty: false, optional: true },
+        actionId: { type: String, empty: false, optional: true },
+      },
+    ],
+    optional: true,
+  },
+  approved: { type: Boolean, optional: true, default: false },
+  createdBy: { type: String, optional: true },
+  updatedBy: { type: String, optional: true },
+});
+
+const activityModel = mongoose.model("Activities", activitySchema);
+
+export { activitySettings, activityModel };

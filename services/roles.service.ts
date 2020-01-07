@@ -1,10 +1,11 @@
 "use strict";
 import { ServiceSchema } from "moleculer";
-import DBService from "services-db-mixin";
+import DBService from "moleculer-db";
+import MongooseAdapter from "moleculer-db-adapter-mongoose";
+import { roleModel, rolesSettings } from "./roles/settings";
 
 // SERVICE IMPORTS:
 import Hooks from "../mixins/hooks";
-import settings from "./roles/settings";
 
 // ACTION
 import getBaseRole from "./roles/actions/getBaseRole";
@@ -13,12 +14,14 @@ const RolesService: ServiceSchema = {
   name: "roles",
   version: 1,
 
-  mixins: [DBService(process.env.MONGO_URI, "roles"), Hooks],
+  mixins: [DBService, Hooks],
+  adapter: new MongooseAdapter(process.env.MONGO_URI),
+  model: roleModel,
 
   /**
    * Service settings
    */
-  settings,
+  settings: rolesSettings,
   /**
    * Service dependencies
    */
