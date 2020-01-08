@@ -10,7 +10,7 @@ import { loggerModel, loggerSettings } from "./logger/settings";
 const LoggerService: ServiceSchema = {
   name: "logger",
   version: 1,
-  mixins: [DBService("", "logger"), Hooks],
+  mixins: [DBService("", "logs"), Hooks],
   dapter: new MongooseAdapter(process.env.MONGO_URI),
   model: loggerModel,
 
