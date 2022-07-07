@@ -46,7 +46,7 @@
     "moleculer-db": "^0.8.4",
     "moleculer-db-adapter-mongoose": "^0.8.3",
     "moleculer-web": "^0.8.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongodb": "^3.3.4",
     "mongoose": "^5.7.12",
     "services-db-mixin": "^2.2.8",
